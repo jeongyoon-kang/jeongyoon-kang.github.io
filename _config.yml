@@ -327,3 +327,20 @@ defaults:
       related: true
       sidebar:
         nav: "docs"
+
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      sidebar:
+        nav: "docs"
+
+  # home page (index.html)
+  - scope:
+      path: ""
+    values:
+      sidebar:
+        nav: "docs"

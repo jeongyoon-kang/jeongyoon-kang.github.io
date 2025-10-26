@@ -13,19 +13,33 @@ main:
 
 # sidebar navigation for categories
 docs:
-  - title: "Categories"
+  - title: "About"
+    url: /categories/about/
+
+  - title: "Overview"
+    url: /categories/overview/
+
+  - title: "Hardware"
     children:
-      - title: "About"
-        url: /categories/about/
-      - title: "Introduction"
-        url: /categories/introduction/
-      - title: "Hardware"
-        url: /categories/software/
-      - title: "Software"
-        url: /categories/hardware/
-      - title: "Linux"
-        url: /categories/linux/
+      - title: "Tech Watch"
+        url: /categories/hw-tech-watch/
+      - title: "Verilog"
+        url: /categories/verilog/
+      - title: "SystemVerilog"
+        url: /categories/systemverilog/
+      - title: "FPGA"
+        url: /categories/fpga/
+      - title: "반도체 공정"
+        url: /categories/semiconductor/
+
+  - title: "Software"
+    children:
+      - title: "Tech Watch"
+        url: /categories/sw-tech-watch/
       - title: "Python"
         url: /categories/python/
       - title: "C/C++"
         url: /categories/cpp/
+
+  - title: "Linux"
+    url: /categories/linux/
