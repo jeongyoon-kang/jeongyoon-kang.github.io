@@ -10,3 +10,22 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+
+# sidebar navigation for categories
+docs:
+  - title: "Categories"
+    children:
+      - title: "About"
+        url: /categories/about/
+      - title: "Introduction"
+        url: /categories/introduction/
+      - title: "Hardware"
+        url: /categories/software/
+      - title: "Software"
+        url: /categories/hardware/
+      - title: "Linux"
+        url: /categories/linux/
+      - title: "Python"
+        url: /categories/python/
+      - title: "C/C++"
+        url: /categories/cpp/
