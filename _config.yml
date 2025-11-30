@@ -325,6 +325,9 @@ defaults:
       comments: # true
       share: true
       related: true
+      toc: true  # Enable table of contents
+      toc_sticky: true  # Make TOC sticky on scroll
+      toc_label: "On this page"  # TOC title
       sidebar:
         nav: "docs"
 
