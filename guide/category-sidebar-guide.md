@@ -35,19 +35,31 @@ Minimal Mistakes 테마에서 계층적 카테고리 네비게이션 사이드�
 
 **Overview** - 블로그 방향 및 포스팅 계획
 
+**Introduce My Projects** (중첩 카테고리) - 프로젝트 소개
+- DMA - DMA 프로젝트
+- FPU - FPU 프로젝트
+
 **Hardware** (중첩 카테고리)
 - Tech Watch - 하드웨어 트렌드 및 기사
 - Verilog
 - SystemVerilog
 - FPGA
-- 반도체 공정
+- Semiconductor - 반도체 공정
+- Circuit
+- Digital Design - 디지털 설계
+- Microelectronic
+- VLSI
+- AMBA - AMBA 프로토콜
 
 **Software** (중첩 카테고리)
 - Tech Watch - 소프트웨어 트렌드 및 기사
 - Python
 - C/C++
+- System SW
 
-**Linux** - Linux 팁 및 튜토리얼
+**Linux** (중첩 카테고리)
+- Device Driver
+- Linux Master
 
 ---
 
@@ -66,6 +78,13 @@ docs:
   - title: "Overview"
     url: /categories/overview/
 
+  - title: "Introduce My Projects"
+    children:
+      - title: "DMA"
+        url: /categories/dma/
+      - title: "FPU"
+        url: /categories/fpu/
+
   - title: "Hardware"
     children:
       - title: "Tech Watch"
@@ -76,8 +95,18 @@ docs:
         url: /categories/systemverilog/
       - title: "FPGA"
         url: /categories/fpga/
-      - title: "반도체 공정"
+      - title: "Semiconductor"
         url: /categories/semiconductor/
+      - title: "Circuit"
+        url: /categories/circuit/
+      - title: "Digital Design"
+        url: /categories/digital-design/
+      - title: "Microelectronic"
+        url: /categories/microelectronic/
+      - title: "VLSI"
+        url: /categories/vlsi/
+      - title: "AMBA"
+        url: /categories/amba/
 
   - title: "Software"
     children:
@@ -87,9 +116,15 @@ docs:
         url: /categories/python/
       - title: "C/C++"
         url: /categories/cpp/
+      - title: "System SW"
+        url: /categories/system-sw/
 
   - title: "Linux"
-    url: /categories/linux/
+    children:
+      - title: "Device Driver"
+        url: /categories/device-driver/
+      - title: "Linux Master"
+        url: /categories/linux-master/
 ```
 
 **설명:**
@@ -207,7 +242,10 @@ categories: category-name
 
 **최상위 카테고리:**
 - `overview` - Overview 카테고리
-- `linux` - Linux 카테고리
+
+**Introduce My Projects 하위 카테고리:**
+- `dma` - DMA 프로젝트
+- `fpu` - FPU 프로젝트
 
 **Hardware 하위 카테고리:**
 - `hw-tech-watch` - Hardware Tech Watch
@@ -215,11 +253,21 @@ categories: category-name
 - `systemverilog` - SystemVerilog
 - `fpga` - FPGA
 - `semiconductor` - 반도체 공정
+- `circuit` - Circuit
+- `digital-design` - Digital Design
+- `microelectronic` - Microelectronic
+- `vlsi` - VLSI
+- `amba` - AMBA
 
 **Software 하위 카테고리:**
 - `sw-tech-watch` - Software Tech Watch
 - `python` - Python
 - `cpp` - C/C++
+- `system-sw` - System SW
+
+**Linux 하위 카테고리:**
+- `device-driver` - Device Driver
+- `linux-master` - Linux Master
 
 ### 예제
 

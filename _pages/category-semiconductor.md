@@ -1,8 +1,8 @@
 ---
-title: "반도체 공정"
+title: "Semiconductor"
 layout: category
 permalink: /categories/semiconductor/
-taxonomy: semiconductor
+taxonomy: Semiconductor
 author_profile: true
 sidebar:
   nav: "docs"

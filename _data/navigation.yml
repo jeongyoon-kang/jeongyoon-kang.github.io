@@ -19,6 +19,13 @@ docs:
   - title: "Overview"
     url: /categories/overview/
 
+  - title: "Introduce My Projects"
+    children:
+      - title: "DMA"
+        url: /categories/dma/
+      - title: "FPU"
+        url: /categories/fpu/
+
   - title: "Hardware"
     children:
       - title: "Tech Watch"
@@ -29,8 +36,19 @@ docs:
         url: /categories/systemverilog/
       - title: "FPGA"
         url: /categories/fpga/
-      - title: "반도체 공정"
+      - title: "Semiconductor"
         url: /categories/semiconductor/
+      - title: "Circuit"
+        url: /categories/circuit/
+      - title: "Digital Design"
+        url: /categories/digital-design/
+      - title: "Microelectronic"
+        url: /categories/microelectronic/
+      - title: "VLSI"
+        url: /categories/vlsi/
+      - title: "AMBA"
+        url: /categories/amba/
+
 
   - title: "Software"
     children:
@@ -40,6 +58,12 @@ docs:
         url: /categories/python/
       - title: "C/C++"
         url: /categories/cpp/
+      - title: "System SW"
+        url: /categories/system-sw/
 
   - title: "Linux"
-    url: /categories/linux/
+    children:
+      - title: "Device Driver"
+        url: /categories/device-driver/
+      - title: "Linux Master"
+        url: /categories/linux-master/

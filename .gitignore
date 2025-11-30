@@ -1,3 +1,6 @@
+# Backup directory (for post management scripts)
+.backup/
+
 # Vim
 *~
 *.sw[p_]

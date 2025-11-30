@@ -148,15 +148,24 @@ categories:
 
 **사용 가능한 카테고리:**
 - `overview` - 블로그 소개/방향
+- `dma` - DMA 프로젝트
+- `fpu` - FPU 프로젝트
 - `hw-tech-watch` - 하드웨어 기술 뉴스
 - `verilog` - Verilog HDL
 - `systemverilog` - SystemVerilog
 - `fpga` - FPGA 설계
 - `semiconductor` - 반도체 공정
+- `circuit` - Circuit
+- `digital-design` - Digital Design
+- `microelectronic` - Microelectronic
+- `vlsi` - VLSI
+- `amba` - AMBA 프로토콜
 - `sw-tech-watch` - 소프트웨어 기술 뉴스
 - `python` - Python 프로그래밍
 - `cpp` - C/C++ 프로그래밍
-- `linux` - Linux 팁과 튜토리얼
+- `system-sw` - System SW
+- `device-driver` - Device Driver
+- `linux-master` - Linux Master
 
 #### 날짜 & 시간
 ```yaml
@@ -363,18 +372,31 @@ Minimal Mistakes는 알림 블록을 제공합니다:
 - 포스팅 방향 업데이트
 - 다른 카테고리에 맞지 않는 일반적인 생각
 
+**프로젝트 카테고리:**
+- `dma` - DMA 프로젝트 소개
+- `fpu` - FPU 프로젝트 소개
+
 **하드웨어 카테고리:**
 - `hw-tech-watch` - 업계 뉴스, 트렌드, 아티클
 - `verilog` - Verilog HDL 전용 콘텐츠
 - `systemverilog` - SystemVerilog와 검증
 - `fpga` - FPGA 설계와 구현
 - `semiconductor` - 공정 기술, 제조
+- `circuit` - Circuit 설계
+- `digital-design` - Digital Design
+- `microelectronic` - Microelectronics
+- `vlsi` - VLSI 설계
+- `amba` - AMBA 프로토콜
 
 **소프트웨어 카테고리:**
 - `sw-tech-watch` - 업계 뉴스, 트렌드, 아티클
 - `python` - Python 프로그래밍, 패키지, 팁
 - `cpp` - C/C++ 프로그래밍, 최적화
-- `linux` - Linux 관리, 팁, 튜토리얼
+- `system-sw` - System SW, 운영체제 관련
+
+**Linux 카테고리:**
+- `device-driver` - Device Driver 개발
+- `linux-master` - Linux 관리, 팁, 튜토리얼
 
 ### 다중 카테고리 포스트
 
