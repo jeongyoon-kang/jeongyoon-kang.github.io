@@ -114,29 +114,29 @@ analytics:
 # Site Author
 author:
   name             : "Jeong Yoon Kang"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/bio_photo.jpg"
   bio              : "HW-SW Engineer"
   location         : "Korea"
   email            : "goneki9713@naver.com"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
+    # - label: "Email"
+    #   icon: "fas fa-fw fa-envelope-square"
+    #   url: "mailto:goneki9713@naver.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
+    # - label: "Twitter"
+    #   icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
+    # - label: "Facebook"
+    #   icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/jeongyoon-kang/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: https://www.instagram.com/jeong_yoon_k/
 
 # Site Footer
 footer:
@@ -320,7 +320,7 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
+      author_profile: false  # Disabled to save sidebar space
       read_time: true
       comments: # true
       share: true
@@ -334,7 +334,7 @@ defaults:
       type: pages
     values:
       layout: single
-      author_profile: true
+      author_profile: false  # Disabled to save sidebar space
       sidebar:
         nav: "docs"
 

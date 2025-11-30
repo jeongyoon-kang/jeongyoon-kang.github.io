@@ -22,6 +22,12 @@
   - 발행 워크플로우
   - 문제 해결
 
+- **[quick-customization-reference.md](quick-customization-reference.md)** - 커스터마이징 빠른 참고
+  - 테마 스킨 변경
+  - 프로필 설정
+  - 기능 활성화
+  - 추천 초기 설정
+
 ### 📘 상세 가이드 (Detailed Guides)
 
 처음 설정하거나 깊이 있는 이해가 필요할 때 참고하세요.
@@ -43,6 +49,14 @@
   - 로컬 테스트 방법
   - 문제 해결
 
+- **[customization-guide.md](customization-guide.md)** - 블로그 외관 커스터마이징 완전 가이드
+  - 테마 스킨 변경
+  - 프로필/로고 설정
+  - 소셜 링크 추가
+  - 댓글/검색/Analytics
+  - 커스텀 CSS
+  - 고급 커스터마이징
+
 ---
 
 ## 🎯 상황별 추천 문서
@@ -61,6 +75,10 @@
 
 ### "로컬에서 블로그를 테스트하고 싶어요"
 → [local-development-guide.md](local-development-guide.md)
+
+### "블로그 외관을 꾸미고 싶어요"
+→ [quick-customization-reference.md](quick-customization-reference.md) (빠른 시작)
+→ [customization-guide.md](customization-guide.md) (상세 가이드)
 
 ---
 
@@ -139,6 +157,15 @@
 - [ ] Jekyll 재시작
 - [ ] 브라우저 확인
 
+### 블로그 외관 커스터마이징 시
+- [ ] 테마 스킨 선택
+- [ ] 프로필 이미지 추가
+- [ ] Bio 작성
+- [ ] GitHub/Email 링크 추가
+- [ ] 코드 복사 버튼 활성화
+- [ ] 검색 기능 활성화
+- [ ] Jekyll 재시작 (필수)
+
 ---
 
 ## 🆘 문제 해결
@@ -176,7 +203,9 @@
 
 ## 📝 문서 수정 이력
 
-- 2025-11-30: 현재 카테고리 구조 반영, 빠른 참고 문서 추가
+- 2025-11-30:
+  - 현재 카테고리 구조 반영, 빠른 참고 문서 추가
+  - 커스터마이징 가이드 추가 (customization-guide.md, quick-customization-reference.md)
 - 이전: 초기 가이드 작성
 
 ---

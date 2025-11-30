@@ -3,7 +3,7 @@ title: "AMBA"
 layout: category
 permalink: /categories/amba/
 taxonomy: amba
-author_profile: true
+author_profile: false
 sidebar:
   nav: "docs"
 ---

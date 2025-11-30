@@ -16,7 +16,22 @@
           {% if nav.children != null %}
           <ul>
             {% for child in nav.children %}
-              <li><a href="{{ child.url | relative_url }}"{% if child.url == page.url %} class="active"{% endif %}>{{ child.title }}</a></li>
+              {% comment %} Extract category slug from URL {% endcomment %}
+              {% assign url_parts = child.url | split: "/" %}
+              {% assign category_slug = url_parts | last %}
+              {% if category_slug == "" %}
+                {% assign category_slug = url_parts[-2] %}
+              {% endif %}
+
+              {% comment %} Count posts in this category {% endcomment %}
+              {% assign post_count = 0 %}
+              {% for post in site.posts %}
+                {% if post.categories contains category_slug %}
+                  {% assign post_count = post_count | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+
+              <li><a href="{{ child.url | relative_url }}"{% if child.url == page.url %} class="active"{% endif %}>{{ child.title }} <span class="taxonomy__count">({{ post_count }})</span></a></li>
             {% endfor %}
           </ul>
           {% endif %}
