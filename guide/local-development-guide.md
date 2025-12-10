@@ -80,7 +80,7 @@ bundle install
 bundle exec jekyll serve
 
 # 또는 자동 재빌드 옵션 포함
-bundle exec jekyll serve --livereload
+bundle exec jekyll serve --host 0.0.0.0 --livereload 
 
 # 특정 포트로 실행
 bundle exec jekyll serve --port 4001

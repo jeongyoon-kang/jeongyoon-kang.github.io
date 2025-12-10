@@ -194,6 +194,7 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - textbook # ignore textbook directory with PDF files
 keep_files:
   - .git
   - .svn
