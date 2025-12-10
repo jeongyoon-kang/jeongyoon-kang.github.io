@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "AMBA - Handshake"
+title: "AMBA - Handshake1"
 categories: amba
 ---
 
