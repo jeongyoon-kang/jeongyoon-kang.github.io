@@ -60,21 +60,21 @@ layout: default
         {% include page__date.html %}
       </footer>
 
+      {% if site.comments.provider and page.comments %}
+        {% if jekyll.environment == 'production' %}
+          {% include comments.html %}
+        {% else %}
+          <p>
+            Comments are configured with provider: <strong>{{ site.comments.provider }}</strong>,
+            but are disabled in non-production environments.
+          </p>
+        {% endif %}
+      {% endif %}
+
       {% if page.share %}{% include social-share.html %}{% endif %}
 
       {% include post_pagination.html %}
     </div>
-
-    {% if site.comments.provider and page.comments %}
-      {% if jekyll.environment == 'production' %}
-        {% include comments.html %}
-      {% else %}
-        <p>
-          Comments are configured with provider: <strong>{{ site.comments.provider }}</strong>,
-          but are disabled in non-production environments.
-        </p>
-      {% endif %}
-    {% endif %}
   </article>
 
   {% comment %}<!-- only show related on a post page when `related: true` -->{% endcomment %}
