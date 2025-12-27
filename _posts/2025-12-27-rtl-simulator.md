@@ -30,19 +30,29 @@ Verilog Simulator는 같은 시뮬레이션 시간 (예: 10ns) 내에서도 **�
 
 자 시뮬레이션 시간이 T=10ns 인 상황에 실제로 Simulator는 이 delta만큼의 짧은 시간동안 무엇을 하는지 그리고 그 작업들의 순서를 알아보도록 하겠습니다.
 
-delta cycle 동안 실행된는 작업과 그 순서는 아래와 같습니다.
+delta cycle 동안 실행되는 작업과 그 순서는 아래와 같습니다.
 
-1. Active Region (활성 영역)
-2. Inactive Region (비활성 영역)
-3. NBA Region (Non-Blocking Assignment 영역)
-4. Monitor Region (모니터 영역)
+1. **Active Region (활성 영역)**
+   - Blocking 할당(`=`)을 즉시 실행하여 변수 값을 즉시 업데이트
+   - Non-blocking 할당(`<=`)의 RHS(우변)를 평가하여 결과를 계산하고, LHS(좌변) 업데이트는 NBA Region으로 예약
+   - Continuous assignment(`assign`)를 평가하여 wire 값을 즉시 업데이트
+   - 대부분의 Verilog 코드가 이 영역에서 실행됨
 
-#### 1. Active Region (활성 영역)
+2. **Inactive Region (비활성 영역)**
+   - `#0` 지연과 같은 명시적 zero-delay 작업을 실행
+   - 명시적 지연이 없으면 이 영역은 건너뜀
 
-**특징:**
-* Blocking 할당(`=`)은 **즉시 실행**되어 즉시 반영
-* Non-blocking 할당 (`<=`)은 Right-Hand Side (RHS)만 평가하고 Left-Hand Side(LHS) 업데이트는 NBA Region으로 **스케줄링**
+3. **NBA Region (Non-Blocking Assignment 영역)**
+   - Active Region에서 예약된 Non-blocking 할당의 LHS 업데이트를 실제로 수행
+   - 이 영역에서 register 값들이 실제로 변경됨
+   - Register 값이 변경되면 이에 의존하는 continuous assignment가 다시 평가됨
 
+4. **Monitor Region (모니터 영역)**
+   - `$monitor`, `$strobe` 등의 모니터링/디버깅 명령어를 실행
+   - 모든 업데이트가 완료된 후 최종 값을 출력
+
+
+---
 **예시1: Blocking vs Non-blocking**
 
 ```verilog
@@ -207,5 +217,93 @@ end
 - product = 6 (NBA Region에서 a 변경 후 재평가)
 
 > **핵심:** Wire의 continuous assignment는 입력(a, b)이 변할 때마다 즉시 재평가됩니다. 하지만 `c <= sum`에서 sum을 읽는 시점은 Active Region이므로, **a와 b가 아직 업데이트되기 전의 옛날 sum값(15)**을 읽게 됩니다. a와 b가 NBA Region에서 업데이트된 후 sum이 10으로 변경되지만, c에는 이미 15가 쓰여질 예정이므로 이 변경사항이 반영되지 않습니다. 이것이 바로 register가 wire 값을 **한 클럭 전의 값으로 capture**하는 이유입니다.
+
+---
+
+## Race Condition (경쟁 상태)
+
+IEEE 1364 표준에서 정의한 Delta Cycle을 이해했다면, 이제 **왜 Blocking 할당을 사용하면 Race Condition이 발생하는지** 알아보겠습니다.
+
+### 문제 상황: 여러 Always 블록에서 같은 변수 사용
+
+```verilog
+// 초기값: a=0, b=1
+// 두 개의 separate always 블록
+always @(posedge clk) begin
+    a = b;
+end
+
+always @(posedge clk) begin
+    b = a;
+end
+```
+
+### Race Condition 발생 원인
+
+두 always 블록 모두 같은 `posedge clk`에 트리거되어 **같은 Active Region**에 들어갑니다.
+
+**IEEE 1364 표준의 핵심 문제:**
+> Active Region 내에서 **여러 always 블록의 실행 순서는 정의되어 있지 않습니다 (undefined)**. 시뮬레이터마다, 실행마다 순서가 달라질 수 있습니다.
+
+따라서 Blocking 할당(`=`)을 사용하면 실행 순서에 따라 결과가 달라지는 **비결정적(non-deterministic) 동작**이 발생합니다:
+
+**Case 1: 첫 번째 블록을 먼저 실행하는 경우**
+```
+Active Region:
+1. a = b  →  a = 1 (즉시 반영)
+2. b = a  →  b = 1 (업데이트된 a값 읽음)
+
+최종 결과: a = 1, b = 1
+```
+
+**Case 2: 두 번째 블록을 먼저 실행하는 경우**
+```
+Active Region:
+1. b = a  →  b = 0 (즉시 반영)
+2. a = b  →  a = 0 (업데이트된 b값 읽음)
+
+최종 결과: a = 0, b = 0
+```
+
+> **문제의 본질:** 같은 코드, 같은 입력인데도 **실행 순서에 따라 결과가 달라집니다**. 이것이 바로 Race Condition입니다.
+
+### 해결책: Non-blocking 할당 사용
+
+```verilog
+// 초기값: a=0, b=1
+always @(posedge clk) begin
+    a <= b;
+end
+
+always @(posedge clk) begin
+    b <= a;
+end
+```
+
+**Non-blocking 할당으로 수정한 경우:**
+
+```
+Active Region (실행 순서 무관):
+- a <= b의 RHS 평가: 현재 b값(1)을 읽어서 NBA Region에 "a에 1 쓰기" 예약
+- b <= a의 RHS 평가: 현재 a값(0)을 읽어서 NBA Region에 "b에 0 쓰기" 예약
+
+NBA Region:
+- a ← 1 업데이트
+- b ← 0 업데이트
+
+최종 결과: a = 1, b = 0 (실행 순서와 무관하게 항상 동일)
+```
+
+> **핵심:** Non-blocking 할당(`<=`)은 Active Region에서 RHS를 평가할 때 **현재 값(업데이트 전 값)**을 읽고, LHS 업데이트는 NBA Region에서 수행하므로, **always 블록의 실행 순서와 무관하게 결과가 일정**합니다. 이것이 Sequential logic을 작성할 때 Non-blocking 할당을 사용해야 하는 이유입니다.
+
+### IEEE 1364 표준의 권고사항
+
+IEEE 1364 표준은 다음과 같이 권고합니다:
+
+1. **Sequential logic (always @(posedge clk))**: Non-blocking 할당(`<=`) 사용
+2. **Combinational logic (always @(*))**: Blocking 할당(`=`) 사용
+3. **같은 변수에 대해 여러 always 블록에서 할당 금지**
+
+이 규칙을 따르면 Race Condition을 방지하고 예측 가능한(deterministic) 시뮬레이션 결과를 얻을 수 있습니다.
 
 
