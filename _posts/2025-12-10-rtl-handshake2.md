@@ -68,6 +68,18 @@ lab1에 대해서는 따로 다룬 포스팅은 없습니다만, 따로 해보�
 
 lab1_valid_interface의 코드는 아래와 같습니다. 여기서 간단하게 or gate에 대한 combination logic을 추가하고 register logic을 수정하면 끝입니다.
 
+Valid/Ready interface에서는 입력이 upstream 뿐만 아니라 downstream에서도 들어오는 상황이기에 handshake에 대한 orring 로직을 어떤 stage에 넣어야할지 막막하게 느껴질 수 도 있습니다. 그림에서 양방향에서 입력이 들어오는데 이걸 어떻게 처리하지...? 라는 생각이 드시는 분이 분명 계실 수 있습니다. 이 때는 schematic을 어떤 관점에서 보느냐, 그리고 어떻게 이 형태의 동치를 본인에게 맞는 형식으로 생각하는 것이 중요합니다. 보는 관점을 달리해버리면 사실 엄청 간단한 문제로 보일 수 있습니다. 자 그럼 위의 그림을 아래와 같이 변환해서 살펴보도록 합시다.
+
+
+![alt text](/assets/images/2025-12-10-rtl-handshake2/handshake_reconstruct.png)
+
+그림을 조금 틀어서 그려봤습니다. 여기서 orring해주는게 첫 번째 register에 들어가기 전에 배치된 형태로 보이시나요? 아래 코드에서는 stage0 register에 capture 되기 전에 orring해줘서 handshake가 발생함을 알려주는 signal을 뽑으면 되는 것입니다. 
+
+그렇다면 아래 코드를 수정하는건 input/output port를 몇개 추가해주고 or, inverter 로직을 stage0에 먼저 추가해줍니다. 그로부터 나온 signal을 F/F의 enable 신호로 사용해주면 됩니다. 조금 더 정확하게 말하면 F/F 앞에 Mux가 있는 형태로 될텐데 그 Mux의 select signal로 사용해주시면 됩니다. 
+
+정답은 git repo에서 lab2에 올려두겠습니다. 아래 lab1내용을 valid/ready interface로 작성해보시고 DUT로 올려서 검증해보길 바랍니다.
+
+
 ```verilog
 //==============================================================================
 // File name    : basic.v
