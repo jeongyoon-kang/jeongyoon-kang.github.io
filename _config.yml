@@ -49,8 +49,8 @@ comments:
     issue_term           : # "pathname" (default)
   giscus:
     repo_id              : "R_kgDOQJTLXA"
-    category_name        : "Announcements"
-    category_id          : "DIC_kwDOQJTLXM4CdCSV1"
+    category_name        : "General"
+    category_id          : "DIC_kwDOQJTLXM4C0SVm"
     discussion_term      : "pathname"
     reactions_enabled    : "1"
     theme                : "light"
