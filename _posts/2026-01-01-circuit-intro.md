@@ -50,5 +50,8 @@ categories: circuit
 시뮬레이션 시작 버튼을 눌러주면 위와 같이 waveform을 볼 수 있는 창이 하나 나옵니다. 보고 싶은 node에 마우스를 올리면 마우스가 프로브로 바뀝니다. 그리고 클릭해주면 아래와 같은 wavaform을 확인할 수 있습니다.
 ![alt text](/assets/images/2026-01-01-circuit-intro/sim_result.png)
 
+![alt text](/assets/images/2026-01-01-circuit-intro/sim_config.png)
+이 창은 시뮬레이션 관련 configuration창입니다. 이번 시뮬레이션에서는 1s로 설정했습니다.
+
 해당 지점의 전위가 2V인 것을 확인할 수 있습니다.
 앞으로 이런 방식으로 회로이론 문제풀이를 할 때마다 spice툴로 그 결과를 확인해보는 시간을 가져보도록 하겠습니다.
