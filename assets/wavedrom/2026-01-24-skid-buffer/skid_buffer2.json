@@ -1,0 +1,57 @@
+{ "signal": [
+  { "name": "clk",              "wave": "P.................." },
+  {},
+  ["Producer",
+    { "name": "m_valid_producer",        "wave": "01................." },
+    { "name": "m_ready_producer",        "wave": "0.10....1...0......", "node":"........g"},
+    { "name": "handshake",               "wave": "0.10....1...0......"},
+    { "name": "m_data_procuder",         
+      "wave": "x2.3.....45678xxx.", 
+      "data": ["D0","D1","D2","D3","D4","D5","D6"],
+      // "node": "...e"
+   },
+  ],
+  {},
+  {},
+  {},
+  ["Main module",
+    { "name": "s_valid_main",        "wave": "01.................", "node": "..a" },
+    { "name": "s_ready_main",        "wave": "0.......1...0......", "node": "........f" },
+    { "name": "s_data_main",
+      "wave": "x2.3.....456xxx...",
+      "data": ["D0","D1","D2","D3","D4","D5"], 
+      "node": "..........xy"
+    },
+    {},
+    {},
+    { "name": "Register Enable",        "wave": "010....1...0.......", "node": ".......e" },
+    { "name": "m_valid_main",        "wave": "0..1...............", "node": "...b" },
+    { "name": "m_ready_main",        "wave": "0......1...0.......", "node": ".......d" },
+    { "name": "m_data_main",
+      "wave": "x..2....3.45.......",
+      "data": ["D0","D1","D2","D3","D4","D5"],
+      "node": "...........pq" }
+  ],
+  {},
+  {},
+  {},
+  ["Consumer",
+    { "name": "s_valid_consumer (실제)",     "wave": "0..1..............." },
+    { "name": "s_ready_consumer (실제)",     "wave": "0......1...0.......", "node": ".......c" },
+    { "name": "s_data_consumer (지연)", "wave": "x..2....3.45.......",
+      "data": ["D0","D1","D2","D3","D4","D5"]},
+    {}
+  ],
+  {}
+],
+  "edge" : ["a-~>b valid capture", 
+            "c-~>d producer가 ready 신호 assert",
+            "d-~>e ready 신호로 인해 내부 enable 신호 변경",
+            // "b-~>c main에서 registered output으로 ready signal 출력",
+            // "c-~>d producer가 받은 ready signal",
+            "e-~>f register capture 된 신호 출력",
+            "f-~>g consumer가 assert한 ready 신호 도착 ",
+            
+            "y-~>q D4가 왔지만 Register의 enable이 row라서 버려짐"
+          ]
+}
